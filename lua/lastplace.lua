@@ -56,19 +56,27 @@ end
 ---Reset cursor to first line.
 ---
 local function reset_to_top()
-    vim.cmd('norm! gg')
+    vim.cmd.norm({ 'gg', bang = true })
 end
 
 ---Attempt to center the line in the buffer.
 ---
 local function center_line()
-    vim.cmd('normal! zvzz')
+    vim.cmd.norm({ 'zvzz', bang = true })
 end
 
 ---Sets line to last line edited.
 --
 local function set_to_last_place()
-    vim.api.nvim_command([[keepjumps normal! g`"]])
+    vim.cmd('keepjumps normal! g`"')
+end
+
+---Set cursor to last registered position.
+---
+---See `:h 'quote` for more info.
+---
+local function last_registered_pos()
+    vim.cmd([[keepjumps normal! G'"<C-e>]])
 end
 
 local function set_cursor_position()
@@ -77,14 +85,13 @@ local function set_cursor_position()
     local window = { first = vim.fn.line('w0'), last = vim.fn.line('w$') }
     -- If the last line is set and the less than the last line in the buffer
     if last > 0 and last <= buf_last then
-        -- Check if the last line of the buffer is the same as the window
         if window.last == buf_last then
             set_to_last_place()
         elseif buf_last - last > math.floor((window.last - window.first) / 2) - 1 then
             set_to_last_place()
             center_line()
         else
-            vim.api.nvim_command([[keepjumps normal! G'"<C-e>]])
+            last_registered_pos()
         end
     end
     if vim.fn.foldclosed('.') ~= -1 and Lastplace.options.open_folds then
