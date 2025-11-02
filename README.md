@@ -1,43 +1,70 @@
+<div align="center">
+
 # nvim-lastplace
 
-A Lua rewrite of vim-lastplace
+A rewrite of [`ethanholz/nvim-lastplace`](https://github.com/ethanholz/nvim-lastplace), which in of
+itself is a Lua rewrite of [`farmergreg/vim-lastplace`](https://github.com/farmergreg/vim-lastplace).
 
-Heavily inspired by https://github.com/farmergreg/vim-lastplace
+</div>
+
+> [!IMPORTANT]
+> I foreseeably plan to maintain this, since the original has been archived.
+>
+> Any support is welcome!
+
+---
 
 ## Installation
+
+### Requirements
+
+- Neovim `>=v0.8`
+
+### [lazy.nvim](https://github.com/folke/lazy.nvim)
+
+```lua
+{
+  'DrKJeff16/nvim-lastplace',
+  lazy = false, -- WARNING: Lazy-loading is not supported currently!
+  version = false,
+  config = function()
+    require('nvim-lastplace').setup()
+  end
+}
+```
 
 ### [paq-nvim](https://github.com/savq/paq-nvim)
 
 ```lua
-paq 'ethanholz/nvim-lastplace'
+paq('DrKJeff16/nvim-lastplace')
 ```
 
-Then add the following to your `init.lua`:
+---
+
+## Configuration
+
+To setup the function you may simply run the `setup()` function:
 
 ```lua
-require'nvim-lastplace'.setup()
+require('nvim-lastplace').setup()
 ```
 
-You may set options using the following:
+The default setup options are:
 
 ```lua
-require'nvim-lastplace'.setup({
-    lastplace_ignore_buftype = {"quickfix", "nofile", "help"},
-    lastplace_ignore_filetype = {"gitcommit", "gitrebase", "svn", "hgcommit"},
-    lastplace_open_folds = true
-})
+{
+  ignore = {
+    bt = { 'quickfix', 'nofile', 'help' },
+    ft = { 'gitcommit', 'gitrebase', 'svn', 'hgcommit' },
+  },
+  open_folds = true
+}
 ```
 
-For those of you still using Vimscript to configure your `init.vim`:
+---
 
-```vim
-lua require'nvim-lastplace'.setup{}
-```
+## Credits
 
-You can now set options using:
+- [@ethanholz](https://github.com/ethanholz) For the original project this was forked from.
+- [@farmergreg](https://github.com/farmergreg) For the project the original was inspired from.
 
-```vim
-let g:lastplace_ignore_buftype = "quickfix,nofile,help"
-let g:lastplace_ignore_filetype = "gitcommit,gitrebase,svn,hgcommit"
-let g:lastplace_open_folds = 1
-```
