@@ -56,13 +56,13 @@ end
 ---Reset cursor to first line.
 ---
 local function reset_to_top()
-    vim.api.nvim_command([[normal! gg]])
+    vim.cmd('norm! gg')
 end
 
 ---Attempt to center the line in the buffer.
 ---
 local function center_line()
-    vim.api.nvim_command([[normal! zvzz]])
+    vim.cmd('normal! zvzz')
 end
 
 ---Sets line to last line edited.
@@ -102,6 +102,12 @@ function Lastplace.lastplace_buf()
     local ignore_ft = Lastplace.options.ignore.ft
     if vim.list_contains(ignore_ft, vim.bo[bufnr].filetype) then
         reset_to_top()
+        return
+    end
+
+    ---Return if the file doesn't exist, like a new and unsaved file
+    ---CREDITS: https://github.com/vladdoster/remember.nvim/blob/master/lua/remember.lua#L58
+    if vim.fn.empty(vim.fn.glob(vim.fn.expand('%'))) ~= 0 then
         return
     end
 
