@@ -8,9 +8,9 @@ itself is a Lua rewrite of [`farmergreg/vim-lastplace`](https://github.com/farme
 </div>
 
 > [!IMPORTANT]
-> I foreseeably plan to maintain this, since the original has been archived.
+> I plan to maintain this in the forseeable future, since the original has been archived.
 >
-> Any support is welcome!
+> Any feedback is welcome!
 
 ---
 
@@ -65,6 +65,6 @@ The default setup options are:
 
 ## Credits
 
-- [@ethanholz](https://github.com/ethanholz) For the original project this was forked from.
-- [@farmergreg](https://github.com/farmergreg) For the project the original was inspired from.
-
+- [@ethanholz](https://github.com/ethanholz) - For the original project this was forked from.
+- [@farmergreg](https://github.com/farmergreg) - For the project the original was inspired from.
+- [@vladdoster](https://github.com/vladdoster) - For [`vladdoster/remember.nvim`](https://github.com/vladdoster/remember.nvim).
