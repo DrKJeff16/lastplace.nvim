@@ -1,6 +1,6 @@
 <div align="center">
 
-# nvim-lastplace
+# lastplace.nvim
 
 A rewrite of [`ethanholz/nvim-lastplace`](https://github.com/ethanholz/nvim-lastplace), which in of
 itself is a Lua rewrite of [`farmergreg/vim-lastplace`](https://github.com/farmergreg/vim-lastplace).
@@ -24,11 +24,11 @@ itself is a Lua rewrite of [`farmergreg/vim-lastplace`](https://github.com/farme
 
 ```lua
 {
-  'DrKJeff16/nvim-lastplace',
+  'DrKJeff16/lastplace.nvim',
   lazy = false, -- WARNING: Lazy-loading is not supported currently!
   version = false,
   config = function()
-    require('nvim-lastplace').setup()
+    require('lastplace').setup()
   end
 }
 ```
@@ -36,7 +36,7 @@ itself is a Lua rewrite of [`farmergreg/vim-lastplace`](https://github.com/farme
 ### [paq-nvim](https://github.com/savq/paq-nvim)
 
 ```lua
-paq('DrKJeff16/nvim-lastplace')
+paq('DrKJeff16/lastplace.nvim')
 ```
 
 ---
@@ -46,7 +46,7 @@ paq('DrKJeff16/nvim-lastplace')
 To setup the function you may simply run the `setup()` function:
 
 ```lua
-require('nvim-lastplace').setup()
+require('lastplace').setup()
 ```
 
 The default setup options are:
