@@ -55,9 +55,21 @@ The default setup options are:
 {
   ignore = {
     bt = { 'quickfix', 'nofile', 'help' },
-    ft = { 'gitcommit', 'gitrebase', 'svn', 'hgcommit' },
+    ft = {
+      'NvimTree',
+      'TelescopePrompt',
+      'TelescopeResults',
+      'fzf',
+      'gitcommit',
+      'gitrebase',
+      'hgcommit',
+      'neo-tree',
+      'snacks_picker_input',
+      'svn',
+      'ministarter',
+    },
   },
-  open_folds = true
+  open_folds = true,
 }
 ```
 
@@ -68,3 +80,9 @@ The default setup options are:
 - [@ethanholz](https://github.com/ethanholz) - For the original project this was forked from.
 - [@farmergreg](https://github.com/farmergreg) - For the project the original was inspired from.
 - [@vladdoster](https://github.com/vladdoster) - For [`vladdoster/remember.nvim`](https://github.com/vladdoster/remember.nvim).
+
+---
+
+## License
+
+[MIT](./LICENSE)

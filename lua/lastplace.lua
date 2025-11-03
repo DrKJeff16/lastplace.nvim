@@ -10,10 +10,6 @@ function Lastplace.get_defaults()
     local opts = {
         ---A tuple containing both lists of excluded filetypes and buftypes.
         ---
-        ---Default:
-        --- - bt: `{ 'quickfix', 'nofile', 'help' }`
-        --- - ft: `{ 'gitcommit', 'gitrebase', 'svn', 'hgcommit' }`
-        ---
         ignore = { ---@type { ft: string[], bt: string[] }
             bt = { 'quickfix', 'nofile', 'help' },
             ft = {
@@ -27,6 +23,7 @@ function Lastplace.get_defaults()
                 'neo-tree',
                 'snacks_picker_input',
                 'svn',
+                'ministarter',
             },
         },
         ---If true it wil automatically open folds upon file reading.
