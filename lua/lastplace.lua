@@ -1,21 +1,3 @@
----Reset cursor to first line.
----
-local function reset_to_top()
-    vim.cmd.norm({ 'gg', bang = true })
-end
-
----Attempt to center the line in the buffer.
----
-local function center_line()
-    vim.cmd.norm({ 'zvzz', bang = true })
-end
-
----Sets line to last line edited.
---
-local function set_to_last_place()
-    vim.cmd('keepjumps normal! g`"')
-end
-
 ---@class Lastplace
 local Lastplace = {}
 
@@ -82,31 +64,24 @@ function Lastplace.setup(opts)
     })
 end
 
----Set cursor to last registered position.
----
----See `:h 'quote` for more info.
----
-local function last_registered_pos()
-    vim.cmd([[keepjumps normal! G'"<C-e>]])
-end
-
-local function set_cursor_position()
+function Lastplace.set_cursor_position()
+    local Actions = require('lastplace.actions')
     local last = vim.fn.line([['"]])
     local buf_last = vim.fn.line('$')
     local window = { first = vim.fn.line('w0'), last = vim.fn.line('w$') }
     -- If the last line is set and the less than the last line in the buffer
     if last > 0 and last <= buf_last then
         if window.last == buf_last then
-            set_to_last_place()
+            Actions.set_to_last_place()
         elseif buf_last - last > math.floor((window.last - window.first) / 2) - 1 then
-            set_to_last_place()
-            center_line()
+            Actions.set_to_last_place()
+            Actions.center_line()
         else
-            last_registered_pos()
+            Actions.last_registered_pos()
         end
     end
     if vim.fn.foldclosed('.') ~= -1 and Lastplace.options.open_folds then
-        center_line()
+        Actions.center_line()
     end
 end
 
@@ -119,7 +94,7 @@ function Lastplace.lastplace_buf()
 
     local ignore_ft = Lastplace.options.ignore.ft
     if vim.list_contains(ignore_ft, vim.bo[bufnr].filetype) then
-        reset_to_top()
+        require('lastplace.actions').reset_to_top()
         return
     end
 
@@ -136,7 +111,7 @@ function Lastplace.lastplace_buf()
         return
     end
 
-    set_cursor_position()
+    Lastplace.set_cursor_position()
 end
 
 ---@param bufnr integer
@@ -148,7 +123,7 @@ function Lastplace.lastplace_ft(bufnr)
 
     local ignore_ft = Lastplace.options.ignore.ft
     if vim.list_contains(ignore_ft, vim.bo[bufnr].filetype) then
-        reset_to_top()
+        require('lastplace.actions').reset_to_top()
         return
     end
 
@@ -158,7 +133,7 @@ function Lastplace.lastplace_ft(bufnr)
     end
 
     ---Ideally this shouldn't be reached but better have it than not.
-    set_cursor_position()
+    Lastplace.set_cursor_position()
 end
 
 return Lastplace
