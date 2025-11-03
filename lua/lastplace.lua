@@ -1,3 +1,21 @@
+---Reset cursor to first line.
+---
+local function reset_to_top()
+    vim.cmd.norm({ 'gg', bang = true })
+end
+
+---Attempt to center the line in the buffer.
+---
+local function center_line()
+    vim.cmd.norm({ 'zvzz', bang = true })
+end
+
+---Sets line to last line edited.
+--
+local function set_to_last_place()
+    vim.cmd('keepjumps normal! g`"')
+end
+
 ---@class Lastplace
 local Lastplace = {}
 
@@ -16,7 +34,18 @@ function Lastplace.get_defaults()
         ---
         ignore = { ---@type { ft: string[], bt: string[] }
             bt = { 'quickfix', 'nofile', 'help' },
-            ft = { 'gitcommit', 'gitrebase', 'svn', 'hgcommit' },
+            ft = {
+                'NvimTree',
+                'TelescopePrompt',
+                'TelescopeResults',
+                'fzf',
+                'gitcommit',
+                'gitrebase',
+                'hgcommit',
+                'neo-tree',
+                'snacks_picker_input',
+                'svn',
+            },
         },
         ---If true it wil automatically open folds upon file reading.
         ---
@@ -51,24 +80,6 @@ function Lastplace.setup(opts)
             })
         end,
     })
-end
-
----Reset cursor to first line.
----
-local function reset_to_top()
-    vim.cmd.norm({ 'gg', bang = true })
-end
-
----Attempt to center the line in the buffer.
----
-local function center_line()
-    vim.cmd.norm({ 'zvzz', bang = true })
-end
-
----Sets line to last line edited.
---
-local function set_to_last_place()
-    vim.cmd('keepjumps normal! g`"')
 end
 
 ---Set cursor to last registered position.
