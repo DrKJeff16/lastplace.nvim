@@ -1,9 +1,8 @@
-# 🎯 lastplace.nvim
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/1dceb43d-e36d-42d0-9742-617e8fdda875">
+</div>
 
-*Intelligently restore your cursor position when reopening files in Neovim*
-
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![Neovim](https://img.shields.io/badge/Neovim-0.7+-green.svg)](https://neovim.io)
+<hr>
 
 ## ✨ Features
 
