@@ -1,3 +1,4 @@
+---@class lastplace.Commands
 local M = {}
 
 local config = require("lastplace.config")

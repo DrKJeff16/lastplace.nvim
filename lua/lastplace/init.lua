@@ -1,9 +1,11 @@
+---@class lastplace
 local M = {}
 
 local commands = require("lastplace.commands")
 local config = require("lastplace.config")
 local core = require("lastplace.core")
 
+---@param user_config? lastplaceOpts
 function M.setup(user_config)
   config.setup(user_config)
 
